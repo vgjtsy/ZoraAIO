@@ -122,7 +122,9 @@ IMAP_SERVER = 'imap.rambler.ru'
 # 30 - Custom routes -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 routes = [
-    ['mint_zorb_zora', 'mintfun', 'mint_opensea_zorb_zora'],
+    ['mint_zorb_zora'],
+    ['mintfun', 'mint_zorb_zora', None],
+    ['mint_opensea_zorb_zora', 'mint_zorb_zora', None],
     ['mint_opensea_zorb_zora', 'mint_opensea_zorb_zora'],
     ['mint_custom_nft', 'mint_zorb_zora', None],
     ['wrap_unwrap', 'mint_zorb_base', 'send_money_yourself'],
