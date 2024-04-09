@@ -7,7 +7,7 @@ from requests.adapters import Retry
 from utils.retry_wallet import exception_handler_wallet
 import requests
 from loguru import logger
-from settings import ZORA_GASPRICE_PRESCALE, BASE_GASPRICE_PRESCALE, TG_BOT_SEND, BLAST_GASPRICE_PRESCALE
+from settings import ZORA_GASPRICE_PRESCALE, TG_BOT_SEND, BLAST_GASPRICE_PRESCALE
 from utils.tg_bot import TgBot
 import json as js
 
@@ -116,9 +116,8 @@ class Wallet(TgBot):
             return {'maxFeePerGas': Web3.to_wei(ZORA_GASPRICE_PRESCALE, 'gwei'), 'maxPriorityFeePerGas': Web3.to_wei(ZORA_GASPRICE_PRESCALE, 'gwei')}
         elif self.chain == 'Blast':
             return {'maxFeePerGas': Web3.to_wei(BLAST_GASPRICE_PRESCALE, 'gwei'), 'maxPriorityFeePerGas': Web3.to_wei(BLAST_GASPRICE_PRESCALE, 'gwei')}
-        elif self.chain == 'Base':
-            return {'maxFeePerGas': BASE_GASPRICE_PRESCALE, 'maxPriorityFeePerGas': int(BASE_GASPRICE_PRESCALE * 0.1)}
-        return {'maxFeePerGas': self.web3.eth.gas_price, 'maxPriorityFeePerGas': int(self.web3.eth.max_priority_fee * 0.1)}
+
+        return {'maxFeePerGas': self.web3.eth.gas_price, 'maxPriorityFeePerGas': int(self.web3.eth.gas_price * 0.1)}
 
     @staticmethod
     def get_api_call_data_post(url, json):
